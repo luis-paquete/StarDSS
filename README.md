@@ -4,6 +4,7 @@ Branch and bound for two dimensional star discrepancy subset selection
 Support material for article
 Carola Doerr, Luís Paquete, "Star Discrepancy Subset Selection: Problem
 Formulation and Efficient Approaches for Low Dimensions"
+
 version 0.1 -  January 2021
 
 input file format:
