@@ -51,7 +51,6 @@
 #define INFEASIBLE       -1
 #define COMPLETE         -1
 #define BACKTRACK        -1
-#define TOLERANCE	1.0E-12	 
 
 /* -----------------------------------------------------------
  *  variables and data structures 
@@ -92,17 +91,6 @@ double bnd2[MAXN];
 clock_t end, start;		/* timing variables		*/
 double cput;
 
-
-/* -----------------------------------------------------------
- *  aux functions 
- * -----------------------------------------------------------  */
-
-double reld(double a, double b) {
-	double c = Abs(a);
-	double d = Abs(b);
-	d = max(c, d);
-	return d == 0.0 ? 0.0 : Abs(a - b) / d;
-}
 
 /* -----------------------------------------------------------
  *  sorting functions 
@@ -311,7 +299,7 @@ double heur1() {
 				hnode.p[i] = j;
 				update(hnode.p[i],1);
 				hnode.v = starc(hnode);
-				if (hnode.v < mini || reld(hnode.v, mini) <= TOLERANCE) {
+				if (hnode.v <= mini) {
 					mini = hnode.v;
 					idx = j;
 				}
@@ -348,10 +336,10 @@ int bounds(int i, int c) {
 	
 	else {
 		bnd1[i] = lb1A(i,c);
-		if (bnode.v < bnd1[i] || reld(bnode.v,bnd1[i]) <= TOLERANCE )
+		if (bnode.v < bnd1[i])
 			return INFEASIBLE;
 		bnd2[i] = lb2A(i,c);
-		if (bnode.v < bnd2[i] || reld(bnode.v,bnd2[i]) <= TOLERANCE) 
+		if (bnode.v < bnd2[i]) 
 			return INFEASIBLE;
 	}
 	return i;
