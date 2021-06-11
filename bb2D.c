@@ -336,10 +336,10 @@ int bounds(int i, int c) {
 	
 	else {
 		bnd1[i] = lb1A(i,c);
-		if (bnode.v < bnd1[i])
+		if (bnode.v <= bnd1[i])
 			return INFEASIBLE;
 		bnd2[i] = lb2A(i,c);
-		if (bnode.v < bnd2[i]) 
+		if (bnode.v <= bnd2[i]) 
 			return INFEASIBLE;
 	}
 	return i;
